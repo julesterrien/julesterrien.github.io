@@ -1,99 +1,86 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <title>Jules Terrien</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="./app.css">
-  <link rel='shortcut icon' href='./assets/favico.png' type='image/x-icon'/ >
+  <link rel='shortcut icon' href='./assets/favico.png' type='image/x-icon' />
   <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700' rel='stylesheet' type='text/css'>
+
+  <script>
+    window.onload = function () {
+      const palettes = [
+        ["#E1CA96", "#ACA885", "#918B76", "#626C66", "#ACA885", "#434A42"],
+        ["#86E7B8", "#93FF96", "#B2FFA8", "#D0FFB7", "#FF69B4", "#B2FFA8"],
+        ["#CC444B", "#DA5552", "#DF7373", "#E39695", "#E4B1AB", "#DA5552"],
+        ["#7C6A0A", "#BABD8D", "#FFDAC6", "#FA9500", "#EB6424", "#FFDAC6"],
+        ["#E6EFE9", "#C5F4E0", "#C2EABA", "#A7C4A0", "#8F8389", "#C5F4E0"],
+      ];
+
+      const selectedPalette = palettes[Math.floor(Math.random() * palettes.length)];
+
+      const elements = [
+        { text: "Hi", backgroundColor: selectedPalette[0] },
+        { text: ",", backgroundColor: selectedPalette[1] },
+        { text: "  I", backgroundColor: selectedPalette[2] },
+        { text: "'m", backgroundColor: selectedPalette[3] },
+        { text: "  Jules", backgroundColor: selectedPalette[4] },
+        { text: ".", backgroundColor: selectedPalette[5] }
+      ];
+
+      const speed = 100;
+      let index = 0;
+
+      function typeWriter() {
+        if (index < elements.length) {
+          const span = document.createElement("span");
+          span.style.backgroundColor = elements[index].backgroundColor; // Apply the color
+          span.textContent = elements[index].text;
+          document.getElementById("typewriter").appendChild(span);
+          index++;
+          setTimeout(typeWriter, speed);
+        }
+      }
+
+      typeWriter();
+    }
+  </script>
 </head>
 
 <body>
-
   <main class="main">
+    <div class="center">
+      <nav class="header group">
+        <h1 id="typewriter"></h1>
+        <!-- <h1><a href="./index.html" id="typewriter">Hi, I'm Jules.</a></h1> -->
+      </nav>
 
-    <nav class="header group">
-      <h1><a href="./index.html">Jules Terrien</a></h1>
-    </nav>
+      <section class="hero">
+        <h3>
+          Currently engineering lead @ <a href="https://invisible.co/" target="__blank">Invisible</a>'s startup
+          incubator building LLM apps.
+        </h3>
 
-    <section class="hero">
-      <h3>
-        I'm a French-American software engineer & entrepreneur living in San Francisco. I'm currently writing code at <a href="http://www.neednova.com" target="_blank">Nova Credit</a> and co-organizing the <a href="http://www.instagram.com/pineapplemotel" target="_blank">Pineapple Motel</a>.
-      </h3>
-      <p>
-        </br>
-          In a past life, I co-founded <a href="./moonkeys.html">music label</a> and ate cheese daily — good times. <img draggable="false" class="emoji" alt="😎" src="https://twemoji.maxcdn.com/2/72x72/1f60e.png" data-pin-nopin="true">
-        </br></br>
-          <a href="./contact.html">Contact me</a> if want to say hi and/or work at Nova. &nbsp; <img draggable="false" class="emoji" alt="😉" src="https://twemoji.maxcdn.com/2/72x72/1f609.png" data-pin-nopin="true">
-      </p>
-    </section>
+        <h3>
+          Previously, early team @ <a href="https://www.routable.com/" target="__blank">Routable</a> and <a
+            href="https://www.novacredit.com/" target="__blank">Nova Credit</a> building in fintech.
+        </h3>
+
+        <p>
+          I also like to <a href="https://soundcloud.com/oona-stones/sets/oona-stones">write music</a>.
+        </p>
+      </section>
+
+    </div>
+
+    <div class="contact">
+      <a href="https://www.linkedin.com/in/julesterrien/" target="__blank">LinkedIn</a> | <a
+        href="https://github.com/julesterrien">Github</a> | <a href="https://x.com/julesterrien"
+        target="__blank">@julesterrien</a>
+    </div>
+
   </main>
-
-  <div class="grid--wrapper">
-    <ul class="grid group">
-      <a class="grid--item" href="./stackle.html">
-        <div class="overlay">
-          <img src="./assets/covers/stackle.png" alt="Stackle">
-        </div>
-        <h5>Stackle</h5>
-      </a>
-
-      <a class="grid--item" href="./mindbits.html">
-        <div class="overlay">
-          <img src="./assets/covers/mindbits.png" alt="MindBits">
-        </div>
-        <h5>MindBits</h5>
-      </a>
-
-      <a class="grid--item" href="./audience.html">
-        <div class="overlay">
-          <img src="./assets/covers/audience.png" alt="Audience.fm">
-        </div>
-        <h5>Audience.fm</h5>
-      </a>
-
-      <a class="grid--item" href="./moonkeys.html">
-        <div class="overlay">
-          <img src="./assets/covers/moonkeys.png" alt="Moonkeys Music">
-        </div>
-        <h5>Moonkeys Music</h5>
-      </a>
-
-      <a class="grid--item" href="./auden.html">
-        <div class="overlay">
-          <img src="./assets/covers/auden.png" alt="Auden">
-        </div>
-        <h5>Auden</h5>
-      </a>
-
-      <a class="grid--item" href="./namaste.html">
-        <div class="overlay">
-          <img src="./assets/covers/namaste.png" alt="Namasté">
-        </div>
-        <h5>Namast&eacute;</h5>
-      </a>
-
-      <a class="grid--item" href="./frank.html">
-        <div class="overlay">
-          <img src="./assets/covers/frank.png" alt="Frank">
-        </div>
-        <h5>Fr&auml;nk</h5>
-      </a>
-
-      <a class="grid--item" href="./christine.html">
-        <div class="overlay">
-          <img src="./assets/covers/christine.png" alt="Christine">
-        </div>
-        <h5>Christine</h5>
-      </a>
-
-      <a class="grid--item" href="./sophia.html">
-        <div class="overlay">
-          <img src="./assets/covers/sophia.png" alt="The Sophia Lorenians">
-        </div>
-        <h5>The Sophia Lorenians</h5>
-      </a>
-    </ul>
-  </div>
 </body>
+
 </html>
