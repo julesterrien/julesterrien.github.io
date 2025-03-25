@@ -1,97 +1,153 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <title>Jules Terrien</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="./app.css" />
+    <link rel="shortcut icon" href="./assets/favico.png" type="image/x-icon" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700"
+      rel="stylesheet"
+      type="text/css"
+    />
 
-<head>
-  <title>Jules Terrien</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="./app.css">
-  <link rel='shortcut icon' href='./assets/favico.png' type='image/x-icon' />
-  <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700' rel='stylesheet' type='text/css'>
+    <script>
+      window.onload = function () {
+        const palettes = [
+          ["#E1CA96", "#ACA885", "#918B76", "#626C66", "#ACA885", "#434A42"],
+          ["#86E7B8", "#93FF96", "#B2FFA8", "#D0FFB7", "#FF69B4", "#B2FFA8"],
+          ["#CC444B", "#DA5552", "#DF7373", "#E39695", "#E4B1AB", "#DA5552"],
+          ["#7C6A0A", "#BABD8D", "#FFDAC6", "#FA9500", "#EB6424", "#FFDAC6"],
+          ["#E6EFE9", "#C5F4E0", "#C2EABA", "#A7C4A0", "#8F8389", "#C5F4E0"],
+        ];
 
-  <script>
-    window.onload = function () {
-      const palettes = [
-        ["#E1CA96", "#ACA885", "#918B76", "#626C66", "#ACA885", "#434A42"],
-        ["#86E7B8", "#93FF96", "#B2FFA8", "#D0FFB7", "#FF69B4", "#B2FFA8"],
-        ["#CC444B", "#DA5552", "#DF7373", "#E39695", "#E4B1AB", "#DA5552"],
-        ["#7C6A0A", "#BABD8D", "#FFDAC6", "#FA9500", "#EB6424", "#FFDAC6"],
-        ["#E6EFE9", "#C5F4E0", "#C2EABA", "#A7C4A0", "#8F8389", "#C5F4E0"],
-      ];
+        const selectedPalette =
+          palettes[Math.floor(Math.random() * palettes.length)];
 
-      const selectedPalette = palettes[Math.floor(Math.random() * palettes.length)];
+        const elements = [
+          { text: "Hi", backgroundColor: selectedPalette[0] },
+          { text: ",", backgroundColor: selectedPalette[1] },
+          { text: "  I", backgroundColor: selectedPalette[2] },
+          { text: "'m", backgroundColor: selectedPalette[3] },
+          { text: "  Jules", backgroundColor: selectedPalette[4] },
+          { text: ".", backgroundColor: selectedPalette[5] },
+        ];
 
-      const elements = [
-        { text: "Hi", backgroundColor: selectedPalette[0] },
-        { text: ",", backgroundColor: selectedPalette[1] },
-        { text: "  I", backgroundColor: selectedPalette[2] },
-        { text: "'m", backgroundColor: selectedPalette[3] },
-        { text: "  Jules", backgroundColor: selectedPalette[4] },
-        { text: ".", backgroundColor: selectedPalette[5] }
-      ];
+        const speed = 100;
+        let index = 0;
 
-      const speed = 100;
-      let index = 0;
-
-      function typeWriter() {
-        if (index < elements.length) {
-          const span = document.createElement("span");
-          span.style.backgroundColor = elements[index].backgroundColor; // Apply the color
-          span.textContent = elements[index].text;
-          document.getElementById("typewriter").appendChild(span);
-          index++;
-          setTimeout(typeWriter, speed);
+        function typeWriter() {
+          if (index < elements.length) {
+            const span = document.createElement("span");
+            span.style.backgroundColor = elements[index].backgroundColor; // Apply the color
+            span.textContent = elements[index].text;
+            document.getElementById("typewriter").appendChild(span);
+            index++;
+            setTimeout(typeWriter, speed);
+          }
         }
-      }
 
-      typeWriter();
-    }
-  </script>
-</head>
+        typeWriter();
+      };
+    </script>
+  </head>
 
-<body>
-  <main class="main">
-    <div class="center">
-      <nav class="header group">
-        <h1 id="typewriter"></h1>
-        <!-- <h1><a href="./index.html" id="typewriter">Hi, I'm Jules.</a></h1> -->
-      </nav>
+  <body>
+    <main class="main">
+      <div class="center">
+        <nav class="header group">
+          <h1 id="typewriter"></h1>
+          <!-- <h1><a href="./index.html" id="typewriter">Hi, I'm Jules.</a></h1> -->
+        </nav>
 
-      <section class="hero">
-        <h3>
-          Currently engineering lead @ <a href="https://invisible.co/" target="__blank">Invisible</a>'s startup
-          incubator building LLM apps.
-        </h3>
+        <section class="hero">
+          <h3>
+            Currently engineering lead @
+            <a href="https://invisible.co/" target="__blank">Invisible</a>'s
+            startup incubator building LLM apps.
+          </h3>
 
-        <h3>
-          Previously, early team @ <a href="https://www.routable.com/" target="__blank">Routable</a> and <a
-            href="https://www.novacredit.com/" target="__blank">Nova Credit</a> building in fintech.
-        </h3>
+          <h3>
+            Previously, early team @
+            <a href="https://www.routable.com/" target="__blank">Routable</a>
+            and
+            <a href="https://www.novacredit.com/" target="__blank"
+              >Nova Credit</a
+            >
+            building in fintech.
+          </h3>
 
-        <p>
-          I also like to <a href="https://soundcloud.com/oona-stones/sets/oona-stones">write music</a>.
-        </p>
-      </section>
+          <p>
+            I also like to
+            <a href="https://soundcloud.com/oona-stones/sets/oona-stones"
+              >write music</a
+            >.
+          </p>
+        </section>
+      </div>
 
-    </div>
-
-    <div class="contact">
-      <a href="https://www.linkedin.com/in/julesterrien/" target="__blank">LinkedIn</a> | <a
-        href="https://github.com/julesterrien">Github</a> | <a href="https://www.npmjs.com/~julesterrien"
-        target="__blank">open
-        source</a> | <a href="https://x.com/julesterrien" target="__blank">@julesterrien</a>
-    </div>
-
-  </main>
+      <div class="contact">
+        <a href="https://www.linkedin.com/in/julesterrien/" target="__blank"
+          >LinkedIn</a
+        >
+        | <a href="https://github.com/julesterrien">Github</a> |
+        <a href="https://www.npmjs.com/~julesterrien" target="__blank"
+          >open source</a
+        >
+        |
+        <a href="https://x.com/julesterrien" target="__blank">@julesterrien</a>
+      </div>
+    </main>
     <div id="supernal-root"></div>
     <script>
-        window.supernalSettings = { assistant_id: "676ff5c7-aae9-4ac1-8b4d-8b545be3b43c" };
+      window.supernalSettings = {
+        assistant_id: "ed1e2b25-a235-4016-b6fe-453e4c25b08d",
+      };
     </script>
-        
-    <script>
-        !function(){if(!window.supernalSettings?.assistant_id)throw new Error("An app ID is required to load Supernal");if(!document.getElementById("supernal-root"))throw new Error("A div with ID supernal-root is required to load the Supernal widget");var e=document.createElement("iframe");function o(){e.height="50",e.width="50"}e.src=`https://copilot.getsupernal.ai/?assistant_id=${window.supernalSettings.assistant_id}`,e.o=!0,e.width="50",e.height="50",e.style.border="none",e.style.position="fixed",e.style.bottom="0px",e.style.right="0px",e.style.zIndex="2147483000",e.style.borderRadius="12px",e.allow="clipboard-write; clipboard-read",e.title="Supernal Widget",document.getElementById("supernal-root").appendChild(e),window.addEventListener("message",(e=>{"GET_HOST_ORIGIN"===e.data.type&&e.source.postMessage({type:"HOST_ORIGIN",origin:window.location.origin},e.origin)})),window.addEventListener("message",(r=>{"supernal-open"===r.data&&(e.width="450",e.height="610"),"supernal-closed"===r.data&&o()})),document.addEventListener("click",(r=>{e.contains(r.target)||(e.contentWindow.postMessage("supernal-closed","*"),o())}))}();
-        // !function(){if(!window.supernalSettings?.assistant_id)throw new Error("An app ID is required to load Supernal");if(!document.getElementById("supernal-root"))throw new Error("A div with ID supernal-root is required to load the Supernal widget");var r=document.createElement("iframe");r.src=`https://copilot.getsupernal.ai?assistant_id=${window.supernalSettings.assistant_id}`,r.style.backgroundColor="transparent",r.width="450",r.height="600",r.style.border="none",r.style.position="fixed",r.style.bottom="0px",r.style.right="0px",r.style.zIndex="9999",r.style.borderRadius="12px",r.allow="clipboard-write; clipboard-read",r.title="Supernal Widget",document.getElementById("supernal-root").appendChild(r),window.addEventListener("message",(r=>{"GET_HOST_ORIGIN"===r.data.type&&r.source.postMessage({type:"HOST_ORIGIN",origin:window.location.origin},r.origin)}))}();
-    </script>
-        
-</body>
 
+    <script>
+      !(function () {
+        if (!window.supernalSettings?.assistant_id)
+          throw new Error("An app ID is required to load Supernal");
+        if (!document.getElementById("supernal-root"))
+          throw new Error(
+            "A div with ID supernal-root is required to load the Supernal widget"
+          );
+        var e = document.createElement("iframe");
+        function o() {
+          (e.height = "50"), (e.width = "50");
+        }
+        (e.src = `https://copilot.getsupernal.ai/?assistant_id=${window.supernalSettings.assistant_id}`),
+          (e.o = !0),
+          (e.width = "50"),
+          (e.height = "50"),
+          (e.style.border = "none"),
+          (e.style.position = "fixed"),
+          (e.style.bottom = "0px"),
+          (e.style.right = "0px"),
+          (e.style.zIndex = "2147483000"),
+          (e.style.borderRadius = "12px"),
+          (e.allow = "clipboard-write; clipboard-read"),
+          (e.title = "Supernal Widget"),
+          document.getElementById("supernal-root").appendChild(e),
+          window.addEventListener("message", (e) => {
+            "GET_HOST_ORIGIN" === e.data.type &&
+              e.source.postMessage(
+                { type: "HOST_ORIGIN", origin: window.location.origin },
+                e.origin
+              );
+          }),
+          window.addEventListener("message", (r) => {
+            "supernal-open" === r.data &&
+              ((e.width = "450"), (e.height = "610")),
+              "supernal-closed" === r.data && o();
+          }),
+          document.addEventListener("click", (r) => {
+            e.contains(r.target) ||
+              (e.contentWindow.postMessage("supernal-closed", "*"), o());
+          });
+      })();
+      // !function(){if(!window.supernalSettings?.assistant_id)throw new Error("An app ID is required to load Supernal");if(!document.getElementById("supernal-root"))throw new Error("A div with ID supernal-root is required to load the Supernal widget");var r=document.createElement("iframe");r.src=`https://copilot.getsupernal.ai?assistant_id=${window.supernalSettings.assistant_id}`,r.style.backgroundColor="transparent",r.width="450",r.height="600",r.style.border="none",r.style.position="fixed",r.style.bottom="0px",r.style.right="0px",r.style.zIndex="9999",r.style.borderRadius="12px",r.allow="clipboard-write; clipboard-read",r.title="Supernal Widget",document.getElementById("supernal-root").appendChild(r),window.addEventListener("message",(r=>{"GET_HOST_ORIGIN"===r.data.type&&r.source.postMessage({type:"HOST_ORIGIN",origin:window.location.origin},r.origin)}))}();
+    </script>
+  </body>
 </html>
