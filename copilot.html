@@ -107,47 +107,93 @@
     </script>
 
     <script>
-      !(function () {
-        if (!window.supernalSettings?.assistant_id)
+      (function () {
+        if (!window.supernalSettings?.assistant_id) {
           throw new Error("An app ID is required to load Supernal");
-        if (!document.getElementById("supernal-root"))
+        }
+
+        const CopilotElement = document.getElementById("supernal-root");
+
+        if (!CopilotElement) {
           throw new Error(
             "A div with ID supernal-root is required to load the Supernal widget"
           );
-        var e = document.createElement("iframe");
-        function o() {
-          (e.height = "50"), (e.width = "50");
         }
-        (e.src = `https://copilot.getsupernal.ai/?assistant_id=${window.supernalSettings.assistant_id}`),
-          (e.o = !0),
-          (e.width = "50"),
-          (e.height = "50"),
-          (e.style.border = "none"),
-          (e.style.position = "fixed"),
-          (e.style.bottom = "0px"),
-          (e.style.right = "0px"),
-          (e.style.zIndex = "2147483000"),
-          (e.style.borderRadius = "12px"),
-          (e.allow = "clipboard-write; clipboard-read"),
-          (e.title = "Supernal Widget"),
-          document.getElementById("supernal-root").appendChild(e),
-          window.addEventListener("message", (e) => {
-            "GET_HOST_ORIGIN" === e.data.type &&
-              e.source.postMessage(
-                { type: "HOST_ORIGIN", origin: window.location.origin },
-                e.origin
-              );
-          }),
-          window.addEventListener("message", (r) => {
-            "supernal-open" === r.data &&
-              ((e.width = "450"), (e.height = "610")),
-              "supernal-closed" === r.data && o();
-          }),
-          document.addEventListener("click", (r) => {
-            e.contains(r.target) ||
-              (e.contentWindow.postMessage("supernal-closed", "*"), o());
-          });
+
+        var iframe = document.createElement("iframe");
+        iframe.src = `https://copilot.getsupernal.ai/?assistant_id=${window.supernalSettings.assistant_id}`;
+        iframe.allowTransparency = true;
+        iframe.width = "50";
+        iframe.height = "50";
+        iframe.style.border = "none";
+        iframe.style.position = "fixed";
+        iframe.style.bottom = "0px";
+        iframe.style.right = "0px";
+        iframe.style.zIndex = "2147483000";
+        iframe.style.borderRadius = "12px";
+        iframe.allow = "clipboard-write; clipboard-read";
+        iframe.title = "Supernal Widget";
+
+        document.getElementById("supernal-root").appendChild(iframe);
+
+        window.addEventListener("message", (event) => {
+          if (event.data.type === "SUPERNAL_GET_HOST_ORIGIN") {
+            event.source.postMessage(
+              {
+                type: "SUPERNAL_HOST_ORIGIN",
+                origin: window.location.origin,
+              },
+              event.origin
+            );
+          }
+          if (event.data.type === "SUPERNAL_SAVE_THREAD") {
+            localStorage.setItem("@supernal_thread_id", event.data.thread_id);
+            localStorage.setItem(
+              "@supernal_thread_saved_at",
+              Date.now().toString()
+            );
+          }
+          if (event.data.type === "SUPERNAL_GET_THREAD") {
+            const threadId = localStorage.getItem("@supernal_thread_id");
+            const savedAt = parseInt(
+              localStorage.getItem("@supernal_thread_saved_at") || "0",
+              10
+            );
+            const isRecent = Date.now() - savedAt < 3600 * 1000; // 1 hour
+
+            event.source.postMessage(
+              {
+                type: "SUPERNAL_GET_THREAD",
+                thread_id: isRecent ? threadId : null,
+              },
+              event.origin
+            );
+          }
+        });
+        function supernalClose() {
+          iframe.height = "50";
+          iframe.width = "50";
+        }
+        function supernalOpen() {
+          iframe.width = "450";
+          iframe.height = "610";
+        }
+        window.addEventListener("message", (event) => {
+          if (event.data === "supernal-open") {
+            supernalOpen();
+          }
+          if (event.data === "supernal-closed") {
+            supernalClose();
+          }
+        });
+        document.addEventListener("click", (event) => {
+          if (!iframe.contains(event.target)) {
+            iframe.contentWindow.postMessage("supernal-closed", "*");
+            supernalClose();
+          }
+        });
       })();
+
       // !function(){if(!window.supernalSettings?.assistant_id)throw new Error("An app ID is required to load Supernal");if(!document.getElementById("supernal-root"))throw new Error("A div with ID supernal-root is required to load the Supernal widget");var r=document.createElement("iframe");r.src=`https://copilot.getsupernal.ai?assistant_id=${window.supernalSettings.assistant_id}`,r.style.backgroundColor="transparent",r.width="450",r.height="600",r.style.border="none",r.style.position="fixed",r.style.bottom="0px",r.style.right="0px",r.style.zIndex="9999",r.style.borderRadius="12px",r.allow="clipboard-write; clipboard-read",r.title="Supernal Widget",document.getElementById("supernal-root").appendChild(r),window.addEventListener("message",(r=>{"GET_HOST_ORIGIN"===r.data.type&&r.source.postMessage({type:"HOST_ORIGIN",origin:window.location.origin},r.origin)}))}();
     </script>
   </body>
